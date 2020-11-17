@@ -3,7 +3,6 @@ package tech.kicky.simplifyopencv
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import tech.kicky.simplifyopencv.databinding.ActivityMainBinding
 
@@ -23,17 +22,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
 
         mBinding.ivLena.setImageResource(R.drawable.lena)
-        val image = BitmapFactory.decodeResource(resources, R.drawable.lena)
+        val source = BitmapFactory.decodeResource(resources, R.drawable.lena)
             .copy(Bitmap.Config.ARGB_8888, true)
-        val width = image.width
-        val height = image.height
+        val width = source.width
+        val height = source.height
         val pixel = IntArray(width * height)
-        image.getPixels(pixel, 0, width, 0, 0, width, height)
+        source.getPixels(pixel, 0, width, 0, 0, width, height)
         val grayPixels: IntArray? = doGray(pixel, width, height)
 
-        val grayBp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        grayBp.setPixels(grayPixels, 0, width, 0, 0, width, height)
-        mBinding.ivResult.setImageBitmap(grayBp)
+        val gray = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        gray.setPixels(grayPixels, 0, width, 0, 0, width, height)
+        mBinding.ivResult.setImageBitmap(gray)
     }
 
     private external fun doGray(imgData: IntArray?, width: Int, height: Int): IntArray?
