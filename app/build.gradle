@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "tech.kicky.simplifyopencv"
-        minSdkVersion 21
+        minSdkVersion 21  // 默认最低版本16会报错
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
